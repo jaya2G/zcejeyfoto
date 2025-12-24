@@ -231,6 +231,13 @@ function initVideoThumbnails() {
     if (!thumbnail) return;
 
     thumbnail.addEventListener('click', function () {
+      // Check if there's a link to navigate to
+      const link = item.getAttribute('data-link');
+      if (link && link !== '#' && link.trim() !== '') {
+        window.location.href = link;
+        return;
+      }
+
       const videoId = item.getAttribute('data-video-id');
       const videoWrapper = document.createElement('div');
       videoWrapper.className = 'video-wrapper';
