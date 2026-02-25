@@ -325,27 +325,46 @@ p {
 .portfolio-tabs {
     display: flex;
     justify-content: center;
-    gap: 2rem;
+    gap: 0.75rem;
     margin-bottom: var(--space-lg);
+    background: rgba(255, 255, 255, 0.04);
+    padding: 0.4rem;
+    border-radius: 50px;
+    display: inline-flex;
+    margin-left: auto;
+    margin-right: auto;
+    width: fit-content;
+}
+
+/* Center the pill container */
+#portfolio .portfolio-tabs {
+    display: flex;
+    margin: 0 auto var(--space-lg);
+    width: fit-content;
 }
 
 .portfolio-tab {
     background: none;
     border: none;
     font-family: var(--font-body);
-    font-size: 1rem;
+    font-size: 0.85rem;
     text-transform: uppercase;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.12em;
     color: var(--text-muted);
     cursor: pointer;
-    padding-bottom: 0.5rem;
-    border-bottom: 1px solid transparent;
-    transition: all 0.3s ease;
+    padding: 0.75rem 2rem;
+    border-radius: 50px;
+    transition: all 0.4s var(--ease-luxury);
+}
+
+.portfolio-tab:hover {
+    color: var(--text-main);
 }
 
 .portfolio-tab.active {
-    color: var(--text-main);
-    border-color: var(--text-accent);
+    background: var(--text-accent);
+    color: #000;
+    font-weight: 500;
 }
 
 .portfolio-content {
@@ -363,41 +382,49 @@ p {
 .gallery-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 2px;
-    /* Minimal gap for luxury feel */
+    gap: 1.25rem;
 }
 
 .gallery-item {
     position: relative;
     aspect-ratio: 4/5;
-    /* Portrait orientation looks more editorial */
     overflow: hidden;
     cursor: pointer;
+    border-radius: 20px;
+    background: var(--bg-surface);
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
+    transition: transform 0.5s var(--ease-luxury), box-shadow 0.5s var(--ease-luxury);
+}
+
+.gallery-item:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5), 0 0 0 1px var(--border-accent);
 }
 
 .gallery-item img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.8s var(--ease-luxury);
+    transition: transform 1s var(--ease-luxury), filter 0.6s ease;
 }
 
 .gallery-item:hover img {
-    transform: scale(1.05);
+    transform: scale(1.08);
 }
 
 .gallery-overlay {
     position: absolute;
-    top: 0;
+    bottom: 0;
     left: 0;
     width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.4);
+    padding: 2rem 1.5rem 1.5rem;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.75) 0%, transparent 100%);
     display: flex;
-    align-items: center;
-    justify-content: center;
+    align-items: flex-end;
+    justify-content: flex-start;
     opacity: 0;
     transition: opacity 0.4s ease;
+    border-radius: 0 0 20px 20px;
 }
 
 .gallery-item:hover .gallery-overlay {
@@ -405,11 +432,20 @@ p {
 }
 
 .gallery-overlay-text {
-    font-family: var(--font-display);
-    font-size: 1.5rem;
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
     color: var(--text-main);
-    transform: translateY(20px);
-    transition: transform 0.4s ease;
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    padding: 0.5rem 1.25rem;
+    border-radius: 50px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    transform: translateY(10px);
+    transition: transform 0.4s var(--ease-luxury);
 }
 
 .gallery-item:hover .gallery-overlay-text {
@@ -420,19 +456,22 @@ p {
 .video-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    /* Larger videos */
-    gap: var(--space-md);
+    gap: 1.5rem;
 }
 
 .video-item {
     background: var(--bg-surface);
     border: 1px solid var(--border-light);
-    padding: 1rem;
-    transition: border-color 0.3s ease;
+    border-radius: 20px;
+    padding: 0.75rem;
+    transition: all 0.4s var(--ease-luxury);
+    overflow: hidden;
 }
 
 .video-item:hover {
-    border-color: var(--text-accent);
+    border-color: var(--border-accent);
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
 }
 
 .video-thumbnail {
@@ -440,7 +479,8 @@ p {
     padding-bottom: 56.25%;
     background: #000;
     overflow: hidden;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
+    border-radius: 14px;
 }
 
 .video-thumbnail img {
@@ -450,12 +490,13 @@ p {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    opacity: 0.8;
-    transition: opacity 0.3s ease;
+    opacity: 0.85;
+    transition: opacity 0.4s ease, transform 0.8s var(--ease-luxury);
 }
 
 .video-item:hover .video-thumbnail img {
     opacity: 1;
+    transform: scale(1.04);
 }
 
 .play-button {
@@ -463,36 +504,43 @@ p {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 60px;
-    height: 60px;
-    border: 1px solid var(--text-main);
+    width: 56px;
+    height: 56px;
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: all 0.3s ease;
+    transition: all 0.4s var(--ease-luxury);
 }
 
 .play-button svg {
     width: 20px;
     height: 20px;
     fill: var(--text-main);
-    margin-left: 4px;
-    /* Optical center */
+    margin-left: 3px;
 }
 
 .video-item:hover .play-button {
-    background: var(--text-main);
-    border-color: var(--text-main);
+    background: var(--text-accent);
+    border-color: var(--text-accent);
+    transform: translate(-50%, -50%) scale(1.1);
 }
 
 .video-item:hover .play-button svg {
     fill: #000;
 }
 
+.video-info {
+    padding: 0.25rem 0.5rem 0.5rem;
+}
+
 .video-info h3 {
-    font-size: 1.25rem;
-    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+    margin-bottom: 0.3rem;
 }
 
 .video-wrapper {
@@ -706,6 +754,7 @@ p {
 
     .gallery-grid {
         grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
     }
 }
 
@@ -754,6 +803,27 @@ p {
 
     .video-grid {
         grid-template-columns: 1fr;
+    }
+
+    .gallery-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .gallery-item {
+        border-radius: 16px;
+    }
+
+    .gallery-overlay {
+        border-radius: 0 0 16px 16px;
+    }
+
+    .video-item {
+        border-radius: 16px;
+    }
+
+    .video-thumbnail {
+        border-radius: 12px;
     }
 
     .contact-info {
