@@ -401,15 +401,62 @@ p {
     box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5), 0 0 0 1px var(--border-accent);
 }
 
-.gallery-item img {
+/* Gallery Slides - stacked images with crossfade */
+.gallery-slides {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.gallery-slides .slide {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 1s var(--ease-luxury), filter 0.6s ease;
+    opacity: 0;
+    transition: opacity 0.4s ease;
 }
 
-.gallery-item:hover img {
-    transform: scale(1.08);
+.gallery-slides .slide.active {
+    opacity: 1;
+}
+
+.gallery-item:hover .gallery-slides .slide.active {
+    transform: scale(1.03);
+    transition: opacity 0.4s ease, transform 6s ease-out;
+}
+
+/* Dot Indicators */
+.gallery-dots {
+    position: absolute;
+    top: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 6px;
+    z-index: 5;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.gallery-item:hover .gallery-dots {
+    opacity: 1;
+}
+
+.gallery-dots .dot {
+    width: 22px;
+    height: 3px;
+    border-radius: 2px;
+    background: rgba(255, 255, 255, 0.35);
+    transition: background 0.3s ease, width 0.3s ease;
+}
+
+.gallery-dots .dot.active {
+    background: var(--text-accent);
 }
 
 .gallery-overlay {

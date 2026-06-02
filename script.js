@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', function () {
   initSmoothScroll();
   initPortfolioTabs();
   initVideoThumbnails();
+  initCursorGallery();
 });
 
 // ============================================
@@ -70,8 +71,10 @@ function initGalleryLightbox() {
 
   galleryItems.forEach(item => {
     item.addEventListener('click', function () {
-      const imageSrc = this.getAttribute('data-image') || this.querySelector('img').src;
-      lightboxImage.src = imageSrc;
+      // Get the currently visible slide, or fall back to any img
+      const activeSlide = this.querySelector('.slide.active') || this.querySelector('img');
+      if (!activeSlide) return;
+      lightboxImage.src = activeSlide.src;
       lightbox.classList.add('active');
       document.body.style.overflow = 'hidden'; // Prevent scrolling
     });
@@ -272,3 +275,49 @@ if ('IntersectionObserver' in window) {
   const images = document.querySelectorAll('img[loading="lazy"]');
   images.forEach(img => imageObserver.observe(img));
 }
+
+// ============================================
+// CURSOR-BASED GALLERY IMAGE SWAPPING
+// ============================================
+function initCursorGallery() {
+  const galleryItems = document.querySelectorAll('.gallery-item');
+
+  galleryItems.forEach(item => {
+    const slides = item.querySelectorAll('.gallery-slides .slide');
+    const dots = item.querySelectorAll('.gallery-dots .dot');
+
+    // Skip items without slides
+    if (slides.length < 2) return;
+
+    let currentIndex = 0;
+
+    // Show a specific slide by index
+    function showSlide(index) {
+      if (index === currentIndex) return;
+      slides.forEach(s => s.classList.remove('active'));
+      dots.forEach(d => d.classList.remove('active'));
+      slides[index].classList.add('active');
+      dots[index].classList.add('active');
+      currentIndex = index;
+    }
+
+    // On mouse move: divide box width into equal segments
+    item.addEventListener('mousemove', function (e) {
+      const rect = item.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const segmentWidth = rect.width / slides.length;
+      let index = Math.floor(x / segmentWidth);
+      index = Math.max(0, Math.min(index, slides.length - 1));
+      showSlide(index);
+    });
+
+    // On mouse leave: reset to first slide
+    item.addEventListener('mouseleave', function () {
+      showSlide(0);
+      // Force reset in case index was already 0
+      currentIndex = -1;
+      showSlide(0);
+    });
+  });
+}
+
