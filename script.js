@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', function () {
   initPortfolioTabs();
   initVideoThumbnails();
   initCursorGallery();
+  initCustomCursor();
 });
 
 // ============================================
@@ -318,6 +319,103 @@ function initCursorGallery() {
       currentIndex = -1;
       showSlide(0);
     });
+  });
+}
+
+// ============================================
+// CUSTOM INTERACTIVE CURSOR
+// ============================================
+function initCustomCursor() {
+  const cursor = document.getElementById('customCursor');
+  const dot = document.getElementById('customCursorDot');
+
+  if (!cursor || !dot) return;
+
+  let mouseX = 0, mouseY = 0; // Target coordinates
+  let cursorX = 0, cursorY = 0; // Current ring coordinates
+  let dotX = 0, dotY = 0; // Current dot coordinates
+  let isHovering = false;
+
+  // Track mouse coordinates
+  window.addEventListener('mousemove', function (e) {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+    
+    // Ensure cursor is visible once mouse moves
+    cursor.style.opacity = '1';
+    dot.style.opacity = '1';
+  });
+
+  // Anim loop for smooth trailing ring
+  function animateCursor() {
+    // Lerp coordinates
+    cursorX += (mouseX - cursorX) * 0.15;
+    cursorY += (mouseY - cursorY) * 0.15;
+    dotX += (mouseX - dotX) * 0.45;
+    dotY += (mouseY - dotY) * 0.45;
+
+    cursor.style.left = cursorX + 'px';
+    cursor.style.top = cursorY + 'px';
+    dot.style.left = dotX + 'px';
+    dot.style.top = dotY + 'px';
+
+    requestAnimationFrame(animateCursor);
+  }
+  
+  // Start loop
+  animateCursor();
+
+  // Hover states using event delegation
+  document.addEventListener('mouseover', function (e) {
+    const target = e.target;
+    if (!target) return;
+    
+    // Check if target or parent is interactive
+    if (
+      target.closest('a') || 
+      target.closest('button') || 
+      target.closest('.portfolio-tab') || 
+      target.closest('.social-link') ||
+      target.closest('.method-pill')
+    ) {
+      cursor.classList.add('hover');
+    } else if (
+      target.closest('.gallery-item') || 
+      target.closest('.video-thumbnail')
+    ) {
+      cursor.classList.add('clickable');
+    }
+  });
+
+  document.addEventListener('mouseout', function (e) {
+    const target = e.target;
+    if (!target) return;
+    
+    if (
+      target.closest('a') || 
+      target.closest('button') || 
+      target.closest('.portfolio-tab') || 
+      target.closest('.social-link') ||
+      target.closest('.method-pill')
+    ) {
+      cursor.classList.remove('hover');
+    } else if (
+      target.closest('.gallery-item') || 
+      target.closest('.video-thumbnail')
+    ) {
+      cursor.classList.remove('clickable');
+    }
+  });
+  
+  // Hide cursor on mouse leave screen
+  document.addEventListener('mouseleave', function () {
+    cursor.style.opacity = '0';
+    dot.style.opacity = '0';
+  });
+  
+  document.addEventListener('mouseenter', function () {
+    cursor.style.opacity = '1';
+    dot.style.opacity = '1';
   });
 }
 

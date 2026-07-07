@@ -9,20 +9,33 @@
   <meta name="keywords"
     content="photography, videography, photographer, videographer, wedding photography, professional photography, photo studio">
   <title>Zcejey Fotography - Professional Photography & Videography Services</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+  
   <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
-  <!-- Navigation -->
+  <!-- Custom Interactive Cursor -->
+  <div class="custom-cursor" id="customCursor"></div>
+  <div class="custom-cursor-dot" id="customCursorDot"></div>
+
+  <!-- Physical Film Grain Overlay -->
+  <div class="film-grain"></div>
+
+  <!-- Floating Capsule Navigation -->
   <nav class="navbar" id="navbar">
-    <div class="container">
-      <a href="#" class="logo">Zcejey Fotography</a>
+    <div class="nav-container">
+      <a href="#" class="logo">Zcejey <span>Fotography</span></a>
       <ul class="nav-links" id="navLinks">
-        <li><a href="#home">Home</a></li>
-        <li><a href="#portfolio">Portfolio</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#services">Services</a></li>
-        <li><a href="#contact">Contact</a></li>
+        <li><a href="#home" class="nav-link-item">Home</a></li>
+        <li><a href="#portfolio" class="nav-link-item">Portfolio</a></li>
+        <li><a href="#about" class="nav-link-item">About</a></li>
+        <li><a href="#services" class="nav-link-item">Services</a></li>
+        <li><a href="#contact" class="nav-link-item">Contact</a></li>
       </ul>
       <div class="mobile-menu-toggle" id="mobileMenuToggle">
         <span></span>
@@ -34,14 +47,30 @@
 
   <!-- Hero Section -->
   <section class="hero" id="home">
-    <img src="Cover.jpg" alt="Photography Background" class="hero-background">
-    <div class="hero-content">
-      <h1 class="hero-title">Capturing Life's Beautiful Moments</h1>
-      <p class="hero-subtitle">Professional photography & videography that tells your unique story with artistry and
-        passion</p>
-      <div class="hero-buttons">
-        <a href="#portfolio" class="btn btn-primary">View Portfolio</a>
-        <a href="#contact" class="btn btn-outline">Get in Touch</a>
+    <div class="hero-glow"></div>
+    <div class="container hero-container">
+      <div class="hero-text">
+        <div class="hero-badge reveal"><span>✦</span> captures of distinction</div>
+        <h1 class="hero-title reveal">Capturing <em>Life's</em> Beautiful Moments</h1>
+        <p class="hero-subtitle reveal">Professional photography & videography that tells your unique story with cinematic vision, creative excellence, and luxury artistry.</p>
+        <div class="hero-buttons reveal">
+          <a href="#portfolio" class="btn btn-primary"><span>View Portfolio</span></a>
+          <a href="#contact" class="btn btn-outline"><span>Get in Touch</span></a>
+        </div>
+      </div>
+      <div class="hero-visuals reveal">
+        <div class="visual-card main-card">
+          <img src="Cover.jpg" alt="Featured Cover Image">
+          <div class="card-tag">Automotive / 01</div>
+        </div>
+        <div class="visual-card secondary-card-1">
+          <img src="Portrait.jpg" alt="Featured Portrait Image">
+          <div class="card-tag">Portrait / 02</div>
+        </div>
+        <div class="visual-card secondary-card-2">
+          <img src="ZCJ01719.jpg" alt="Featured Event Image">
+          <div class="card-tag">Fashion / 03</div>
+        </div>
       </div>
     </div>
   </section>
@@ -49,15 +78,18 @@
   <!-- Portfolio Section -->
   <section class="section" id="portfolio">
     <div class="container">
-      <h2 class="section-title reveal">Portfolio</h2>
+      <div class="section-header reveal">
+        <span class="sub-title">Selected Works</span>
+        <h2 class="section-title">Creative Portfolio</h2>
+      </div>
 
-      <!-- Portfolio Tabs -->
+      <!-- Portfolio Tabs (Premium Pill Segmented Control) -->
       <div class="portfolio-tabs reveal">
         <button class="portfolio-tab active" data-tab="photography">Photography</button>
         <button class="portfolio-tab" data-tab="videography">Videography</button>
       </div>
 
-      <!-- Photography Tab Content -->
+      <!-- Photography Tab Content (Standard Grid of Equal Tiles) -->
       <div class="portfolio-content active" id="photography">
         <div class="gallery-grid">
 
@@ -187,7 +219,7 @@
           <!-- 8. Wedding -->
           <div class="gallery-item reveal">
             <div class="gallery-slides">
-              <img src="wedding.jpg" alt="Wedding Photo 1" class="slide active" loading="lazy">
+              <img src="wedding.jpg" alt="Wedding Photo 1" class="slide active" onerror="this.src='Portrait.jpg'" loading="lazy">
               <img src="product.jpg" alt="Wedding Photo 2" class="slide" loading="lazy">
               <img src="ZCJ01084.jpg" alt="Wedding Photo 3" class="slide" loading="lazy">
             </div>
@@ -224,16 +256,14 @@
       <!-- Videography Tab Content -->
       <div class="portfolio-content" id="videography">
         <div class="video-grid">
+          
           <div class="video-item reveal" data-video-id="dQw4w9WgXcQ"
             data-link="https://youtu.be/nJMxkuOtXv0?si=qdkXzLdas_UD0bZZ">
             <div class="video-thumbnail">
               <img src="pre shoot.jpg" alt="Wedding Highlight Reel">
               <div class="play-button">
-                <svg width="68" height="48" viewBox="0 0 68 48">
-                  <path
-                    d="M66.52,7.74c-0.78-2.93-2.49-5.41-5.42-6.19C55.79,.13,34,0,34,0S12.21,.13,6.9,1.55 C3.97,2.33,2.27,4.81,1.48,7.74C0.06,13.05,0,24,0,24s0.06,10.95,1.48,16.26c0.78,2.93,2.49,5.41,5.42,6.19 C12.21,47.87,34,48,34,48s21.79-0.13,27.1-1.55c2.93-0.78,4.64-3.26,5.42-6.19C67.94,34.95,68,24,68,24S67.94,13.05,66.52,7.74z"
-                    fill="#f00"></path>
-                  <path d="M 45,24 27,14 27,34" fill="#fff"></path>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polygon points="5 3 19 12 5 21 5 3" fill="currentColor"></polygon>
                 </svg>
               </div>
             </div>
@@ -242,16 +272,14 @@
               <p>Cinematic Wedding Films</p>
             </div>
           </div>
+          
           <div class="video-item reveal" data-video-id="dQw4w9WgXcQ"
             data-link="https://youtu.be/HF2wuyX4D1k?si=tgbFH4S610OEF0rF">
             <div class="video-thumbnail">
               <img src="ZCJ01719.jpg" alt="Corporate Event">
               <div class="play-button">
-                <svg width="68" height="48" viewBox="0 0 68 48">
-                  <path
-                    d="M66.52,7.74c-0.78-2.93-2.49-5.41-5.42-6.19C55.79,.13,34,0,34,0S12.21,.13,6.9,1.55 C3.97,2.33,2.27,4.81,1.48,7.74C0.06,13.05,0,24,0,24s0.06,10.95,1.48,16.26c0.78,2.93,2.49,5.41,5.42,6.19 C12.21,47.87,34,48,34,48s21.79-0.13,27.1-1.55c2.93-0.78,4.64-3.26,5.42-6.19C67.94,34.95,68,24,68,24S67.94,13.05,66.52,7.74z"
-                    fill="#f00"></path>
-                  <path d="M 45,24 27,14 27,34" fill="#fff"></path>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polygon points="5 3 19 12 5 21 5 3" fill="currentColor"></polygon>
                 </svg>
               </div>
             </div>
@@ -260,16 +288,14 @@
               <p>Professional event coverage</p>
             </div>
           </div>
+          
           <div class="video-item reveal" data-video-id="dQw4w9WgXcQ"
             data-link="https://youtu.be/lRh6HwzBZ0A?si=8X8k8jnDoLqiwXNf">
             <div class="video-thumbnail">
               <img src="cienmatic video.jpg" alt="Product Showcase">
               <div class="play-button">
-                <svg width="68" height="48" viewBox="0 0 68 48">
-                  <path
-                    d="M66.52,7.74c-0.78-2.93-2.49-5.41-5.42-6.19C55.79,.13,34,0,34,0S12.21,.13,6.9,1.55 C3.97,2.33,2.27,4.81,1.48,7.74C0.06,13.05,0,24,0,24s0.06,10.95,1.48,16.26c0.78,2.93,2.49,5.41,5.42,6.19 C12.21,47.87,34,48,34,48s21.79-0.13,27.1-1.55c2.93-0.78,4.64-3.26,5.42-6.19C67.94,34.95,68,24,68,24S67.94,13.05,66.52,7.74z"
-                    fill="#f00"></path>
-                  <path d="M 45,24 27,14 27,34" fill="#fff"></path>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polygon points="5 3 19 12 5 21 5 3" fill="currentColor"></polygon>
                 </svg>
               </div>
             </div>
@@ -278,16 +304,14 @@
               <p>Commercial product video</p>
             </div>
           </div>
+          
           <div class="video-item reveal" data-video-id="dQw4w9WgXcQ"
             data-link="https://youtu.be/PX2ba2cmefg?si=yQNU17LXeFxFz4ye">
             <div class="video-thumbnail">
               <img src="travel film.jpg" alt="Travel Film">
               <div class="play-button">
-                <svg width="68" height="48" viewBox="0 0 68 48">
-                  <path
-                    d="M66.52,7.74c-0.78-2.93-2.49-5.41-5.42-6.19C55.79,.13,34,0,34,0S12.21,.13,6.9,1.55 C3.97,2.33,2.27,4.81,1.48,7.74C0.06,13.05,0,24,0,24s0.06,10.95,1.48,16.26c0.78,2.93,2.49,5.41,5.42,6.19 C12.21,47.87,34,48,34,48s21.79-0.13,27.1-1.55c2.93-0.78,4.64-3.26,5.42-6.19C67.94,34.95,68,24,68,24S67.94,13.05,66.52,7.74z"
-                    fill="#f00"></path>
-                  <path d="M 45,24 27,14 27,34" fill="#fff"></path>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polygon points="5 3 19 12 5 21 5 3" fill="currentColor"></polygon>
                 </svg>
               </div>
             </div>
@@ -296,16 +320,14 @@
               <p>Cinematic travel videography</p>
             </div>
           </div>
+          
           <div class="video-item reveal" data-video-id="dQw4w9WgXcQ"
             data-link="https://youtu.be/scG6UNPRMZc?si=XIIwS0KUT3Za_WOe">
             <div class="video-thumbnail">
               <img src="dance cover.png" alt="Music Video">
               <div class="play-button">
-                <svg width="68" height="48" viewBox="0 0 68 48">
-                  <path
-                    d="M66.52,7.74c-0.78-2.93-2.49-5.41-5.42-6.19C55.79,.13,34,0,34,0S12.21,.13,6.9,1.55 C3.97,2.33,2.27,4.81,1.48,7.74C0.06,13.05,0,24,0,24s0.06,10.95,1.48,16.26c0.78,2.93,2.49,5.41,5.42,6.19 C12.21,47.87,34,48,34,48s21.79-0.13,27.1-1.55c2.93-0.78,4.64-3.26,5.42-6.19C67.94,34.95,68,24,68,24S67.94,13.05,66.52,7.74z"
-                    fill="#f00"></path>
-                  <path d="M 45,24 27,14 27,34" fill="#fff"></path>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polygon points="5 3 19 12 5 21 5 3" fill="currentColor"></polygon>
                 </svg>
               </div>
             </div>
@@ -314,15 +336,13 @@
               <p>Creative videography</p>
             </div>
           </div>
+          
           <div class="video-item reveal" data-video-id="dQw4w9WgXcQ" data-link="https://youtu.be/wiH-3_DxURg">
             <div class="video-thumbnail">
               <img src="car thumb.JPG" alt="Documentary">
               <div class="play-button">
-                <svg width="68" height="48" viewBox="0 0 68 48">
-                  <path
-                    d="M66.52,7.74c-0.78-2.93-2.49-5.41-5.42-6.19C55.79,.13,34,0,34,0S12.21,.13,6.9,1.55 C3.97,2.33,2.27,4.81,1.48,7.74C0.06,13.05,0,24,0,24s0.06,10.95,1.48,16.26c0.78,2.93,2.49,5.41,5.42,6.19 C12.21,47.87,34,48,34,48s21.79-0.13,27.1-1.55c2.93-0.78,4.64-3.26,5.42-6.19C67.94,34.95,68,24,68,24S67.94,13.05,66.52,7.74z"
-                    fill="#f00"></path>
-                  <path d="M 45,24 27,14 27,34" fill="#fff"></path>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polygon points="5 3 19 12 5 21 5 3" fill="currentColor"></polygon>
                 </svg>
               </div>
             </div>
@@ -331,16 +351,14 @@
               <p>Automotive Cinematic Videography</p>
             </div>
           </div>
+          
           <!-- New Videography Items -->
           <div class="video-item reveal" data-video-id="dQw4w9WgXcQ" data-link="#">
             <div class="video-thumbnail">
               <img src="video1_thumb.jpg" alt="Video 1" onerror="this.src='car thumb.JPG'">
               <div class="play-button">
-                <svg width="68" height="48" viewBox="0 0 68 48">
-                  <path
-                    d="M66.52,7.74c-0.78-2.93-2.49-5.41-5.42-6.19C55.79,.13,34,0,34,0S12.21,.13,6.9,1.55 C3.97,2.33,2.27,4.81,1.48,7.74C0.06,13.05,0,24,0,24s0.06,10.95,1.48,16.26c0.78,2.93,2.49,5.41,5.42,6.19 C12.21,47.87,34,48,34,48s21.79-0.13,27.1-1.55c2.93-0.78,4.64-3.26,5.42-6.19C67.94,34.95,68,24,68,24S67.94,13.05,66.52,7.74z"
-                    fill="#f00"></path>
-                  <path d="M 45,24 27,14 27,34" fill="#fff"></path>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polygon points="5 3 19 12 5 21 5 3" fill="currentColor"></polygon>
                 </svg>
               </div>
             </div>
@@ -349,15 +367,13 @@
               <p>Cinematic Videography</p>
             </div>
           </div>
+          
           <div class="video-item reveal" data-video-id="dQw4w9WgXcQ" data-link="#">
             <div class="video-thumbnail">
               <img src="video2_thumb.jpg" alt="Video 2" onerror="this.src='car thumb.JPG'">
               <div class="play-button">
-                <svg width="68" height="48" viewBox="0 0 68 48">
-                  <path
-                    d="M66.52,7.74c-0.78-2.93-2.49-5.41-5.42-6.19C55.79,.13,34,0,34,0S12.21,.13,6.9,1.55 C3.97,2.33,2.27,4.81,1.48,7.74C0.06,13.05,0,24,0,24s0.06,10.95,1.48,16.26c0.78,2.93,2.49,5.41,5.42,6.19 C12.21,47.87,34,48,34,48s21.79-0.13,27.1-1.55c2.93-0.78,4.64-3.26,5.42-6.19C67.94,34.95,68,24,68,24S67.94,13.05,66.52,7.74z"
-                    fill="#f00"></path>
-                  <path d="M 45,24 27,14 27,34" fill="#fff"></path>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polygon points="5 3 19 12 5 21 5 3" fill="currentColor"></polygon>
                 </svg>
               </div>
             </div>
@@ -366,36 +382,69 @@
               <p>Cinematic Videography</p>
             </div>
           </div>
+
         </div>
       </div>
     </div>
   </section>
 
-  <!-- About Section -->
+  <!-- About Section (Bento Layout) -->
   <section class="section" id="about">
     <div class="container">
-      <h2 class="section-title reveal">About Me</h2>
-      <div class="about-content">
-        <div class="about-image reveal">
-          <img src="profilepicture.jpg" alt="Professional Photographer">
-        </div>
-        <div class="about-text reveal">
+      <div class="section-header reveal">
+        <span class="sub-title">The Creator</span>
+        <h2 class="section-title">About Me</h2>
+      </div>
+      
+      <div class="about-bento">
+        
+        <!-- Bio Card (Spans 2 cols) -->
+        <div class="about-card about-bio-card reveal">
           <h3>Crafting Visual Stories Since 2020</h3>
           <p>
-            Hi, I'm a passionate photographer and videographer dedicated to capturing the essence of every moment.
-            With over 3 years of experience.
+            Hi, I'm a passionate photographer and videographer dedicated to capturing the essence of every moment. With years of experience behind the lens, I combine technical expertise with artistic vision, ensuring that every photograph and video tells a compelling, human story.
           </p>
           <p>
-            My approach combines technical expertise with artistic vision, ensuring that every photograph and video
-            tells a compelling story. I believe that visual storytelling is more than just clicking a button, it's
-            about understanding light, emotion, and the perfect moment.
+            I believe that visual storytelling is more than just clicking a button—it's about understanding light, emotion, and the exact split-second that defines a memory.
           </p>
-          <p>
-            Whether you're looking for professional headshots, wedding coverage, or creative commercial
-            content, I bring dedication, creativity, and professionalism to every project.
-          </p>
-          <a href="#contact" class="btn btn-primary">Let's Work Together</a>
+          <div class="about-signature">
+            <span class="sig-title">Zcejey Fotography</span>
+            <span class="sig-badge">Established 2020</span>
+          </div>
         </div>
+
+        <!-- Portrait Image Card (Tall, Spans 1 col, 2 rows) -->
+        <div class="about-card about-portrait-card reveal">
+          <div class="portrait-image-wrapper">
+            <img src="profilepicture.jpg" alt="Professional Photographer">
+          </div>
+          <div class="portrait-overlay">
+            <span>Colombo, Sri Lanka</span>
+          </div>
+        </div>
+
+        <!-- Stats Card (Spans 2 cols) -->
+        <div class="about-card about-stats-card reveal">
+          <div class="stats-grid">
+            <div class="stat-box">
+              <span class="stat-number">5+</span>
+              <span class="stat-label">Years Experience</span>
+            </div>
+            <div class="stat-box">
+              <span class="stat-number">150+</span>
+              <span class="stat-label">Projects Completed</span>
+            </div>
+            <div class="stat-box">
+              <span class="stat-number">100%</span>
+              <span class="stat-label">Creative Vision</span>
+            </div>
+            <div class="stat-box">
+              <span class="stat-number">15+</span>
+              <span class="stat-label">Cinematic Films</span>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
@@ -403,43 +452,61 @@
   <!-- Services Section -->
   <section class="section" id="services">
     <div class="container">
-      <h2 class="section-title reveal">Services</h2>
+      <div class="section-header reveal">
+        <span class="sub-title">What I Offer</span>
+        <h2 class="section-title">Professional Services</h2>
+      </div>
+
       <div class="services-grid">
+        
         <div class="service-card reveal">
+          <div class="service-card-glow"></div>
+          <div class="service-number">01</div>
           <div class="service-icon">📸</div>
           <h3>Portrait Photography</h3>
-          <p>Professional portraits that capture your personality and essence. Perfect for personal branding, LinkedIn
-            profiles, or family memories.</p>
+          <p>Professional portraits that capture your personality and essence. Perfect for personal branding, LinkedIn profiles, or family memories.</p>
         </div>
+
         <div class="service-card reveal">
+          <div class="service-card-glow"></div>
+          <div class="service-number">02</div>
           <div class="service-icon">💍</div>
           <h3>Wedding Photography</h3>
-          <p>Comprehensive wedding coverage from engagement to reception. Beautiful, timeless photos of your special
-            day.</p>
+          <p>Comprehensive wedding coverage from engagement to reception. Beautiful, timeless photos of your special day.</p>
         </div>
+
         <div class="service-card reveal">
+          <div class="service-card-glow"></div>
+          <div class="service-number">03</div>
           <div class="service-icon">🎉</div>
           <h3>Event Photography</h3>
           <p>Corporate events, parties, and celebrations captured with professional quality and creative flair.</p>
         </div>
+
         <div class="service-card reveal">
+          <div class="service-card-glow"></div>
+          <div class="service-number">04</div>
           <div class="service-icon">🎬</div>
           <h3>Videography Services</h3>
-          <p>Cinematic videography for weddings, events, commercials, and creative projects with professional editing.
-          </p>
+          <p>Cinematic videography for weddings, events, commercials, and creative projects with professional editing.</p>
         </div>
+
         <div class="service-card reveal">
+          <div class="service-card-glow"></div>
+          <div class="service-number">05</div>
           <div class="service-icon">✨</div>
           <h3>Creative Sessions</h3>
-          <p>Artistic and conceptual photography/videography for unique projects, fashion shoots, and creative
-            collaborations.</p>
+          <p>Artistic and conceptual photography/videography for unique projects, fashion shoots, and creative collaborations.</p>
         </div>
+
         <div class="service-card reveal">
+          <div class="service-card-glow"></div>
+          <div class="service-number">06</div>
           <div class="service-icon">🏢</div>
           <h3>Commercial Content</h3>
-          <p>Product photography, real estate, corporate headshots, and promotional videos that elevate your brand.
-          </p>
+          <p>Product photography, real estate, corporate headshots, and promotional videos that elevate your brand.</p>
         </div>
+
       </div>
     </div>
   </section>
@@ -447,27 +514,38 @@
   <!-- Contact Section -->
   <section class="section" id="contact">
     <div class="container">
-      <h2 class="section-title reveal">Get in Touch</h2>
-
-      <div style="text-align: center; margin: 2rem 0;">
-        <a href="https://wa.me/94719817622?text=Hi%20I%20visited%20your%20website%20and%20want%20to%20get%20more%20details"
-          target="_blank" class="btn btn-primary">
-          Send Message
-        </a>
+      <div class="section-header reveal">
+        <span class="sub-title">Collaboration</span>
+        <h2 class="section-title">Get in Touch</h2>
       </div>
 
-      <div class="contact-info reveal">
-        <div class="contact-item">
-          <span class="contact-item-icon">📧</span>
-          <span>zcejey21@gmail.com</span>
-        </div>
-        <div class="contact-item">
-          <span class="contact-item-icon">📱</span>
-          <span>+94 719817622</span>
-        </div>
-        <div class="contact-item">
-          <span class="contact-item-icon">📍</span>
-          <span>Sri Lanka, Colombo</span>
+      <div class="contact-center">
+        <div class="contact-details-card reveal">
+          <div class="details-glow"></div>
+          <h3>Let's start your story.</h3>
+          <p>Reach out to discuss your photography and videography requirements, request rates, or schedule a session.</p>
+          
+          <div class="contact-methods">
+            <a href="mailto:zcejey21@gmail.com" class="method-pill">
+              <span class="method-icon">📧</span>
+              <span class="method-text">zcejey21@gmail.com</span>
+            </a>
+            <a href="tel:+94719817622" class="method-pill">
+              <span class="method-icon">📱</span>
+              <span class="method-text">+94 719817622</span>
+            </a>
+            <div class="method-pill no-click">
+              <span class="method-icon">📍</span>
+              <span class="method-text">Sri Lanka, Colombo</span>
+            </div>
+          </div>
+
+          <div class="whatsapp-cta">
+            <a href="https://wa.me/94719817622?text=Hi%20I%20visited%20your%20website%20and%20want%20to%20get%20more%20details"
+              target="_blank" class="btn btn-primary whatsapp-btn">
+              <span>💬  Send WhatsApp Message</span>
+            </a>
+          </div>
         </div>
       </div>
     </div>
@@ -479,25 +557,25 @@
       <div class="footer-content">
         <div class="social-links">
           <a href="https://www.instagram.com/zcejey_fotography" class="social-link" aria-label="Instagram">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
               <path
-                d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+                d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
             </svg>
           </a>
           <a href="https://www.facebook.com/share/15SxCU9FTX/" class="social-link" aria-label="Facebook">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
               <path
                 d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.954 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
             </svg>
           </a>
           <a href="#" class="social-link" aria-label="Twitter">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
               <path
                 d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
             </svg>
           </a>
           <a href="#" class="social-link" aria-label="LinkedIn">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
               <path
                 d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
             </svg>
@@ -505,7 +583,7 @@
         </div>
       </div>
       <div class="footer-copyright">
-        <p>&copy; 2025 Zcejey Fotography. All rights reserved.</p>
+        <p>&copy; 2026 Zcejey Fotography. All rights reserved.</p>
       </div>
     </div>
   </footer>
