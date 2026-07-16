@@ -107,37 +107,9 @@ ul {
 }
 
 /* ============================================
-   3. CURSOR & GRAIN ANIMATION (2026 EXPERIENTIAL)
+   3. CURSOR ANIMATION (2026 EXPERIENTIAL)
    ============================================ */
 
-/* Procedural Film Grain Overlay */
-.film-grain {
-    position: fixed;
-    top: -50%;
-    left: -50%;
-    right: -50%;
-    bottom: -50%;
-    width: 200%;
-    height: 200%;
-    background: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-    opacity: 0.04;
-    pointer-events: none;
-    z-index: 9999;
-    animation: grainAnimation 8s steps(10) infinite;
-}
-
-@keyframes grainAnimation {
-    0%, 100% { transform:translate(0, 0); }
-    10% { transform:translate(-5%, -10%); }
-    20% { transform:translate(-15%, 5%); }
-    30% { transform:translate(7%, -25%); }
-    40% { transform:translate(-5%, 25%); }
-    50% { transform:translate(-15%, 10%); }
-    60% { transform:translate(15%, 0%); }
-    70% { transform:translate(0%, 15%); }
-    80% { transform:translate(3%, 35%); }
-    90% { transform:translate(-10%, 10%); }
-}
 
 /* Custom Cursor */
 .custom-cursor {
@@ -463,7 +435,25 @@ p {
     position: relative;
     overflow: hidden;
     padding: 9rem 0 5rem;
-    background: radial-gradient(circle at 80% 40%, rgba(212, 175, 55, 0.06) 0%, rgba(7, 7, 8, 0) 60%);
+    background: url('Cover.jpg') center center / cover no-repeat;
+}
+
+/* Dark gradient overlay for text legibility */
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        180deg,
+        rgba(7, 7, 8, 0.65) 0%,
+        rgba(7, 7, 8, 0.45) 40%,
+        rgba(7, 7, 8, 0.6) 70%,
+        rgba(7, 7, 8, 1) 100%
+    );
+    z-index: 1;
 }
 
 .hero-glow {
@@ -539,14 +529,24 @@ p {
     justify-content: center;
 }
 
+/* Override reveal for the container itself so we animate the individual cards instead */
+.hero-visuals.reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+}
+
 .visual-card {
     position: absolute;
-    border-radius: 20px;
+    border-radius: 24px;
     overflow: hidden;
     border: 1px solid var(--border-light);
     box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6);
-    transition: transform 0.6s var(--ease-luxury), box-shadow 0.6s var(--ease-luxury);
     background-color: var(--bg-surface);
+    opacity: 0;
+    /* Default state: stacked in the center and translated down */
+    transform: translate(0, 100px) rotate(0deg) scale(0.85);
+    transition: transform 1.2s var(--ease-luxury), opacity 1.2s var(--ease-luxury), box-shadow 0.6s var(--ease-luxury);
 }
 
 .visual-card img {
@@ -575,24 +575,45 @@ p {
     width: 270px;
     height: 380px;
     z-index: 3;
-    transform: rotate(-3deg) translate(-20px, 0);
 }
 
 .secondary-card-1 {
     width: 210px;
     height: 290px;
     z-index: 2;
-    transform: rotate(6deg) translate(140px, -70px);
 }
 
 .secondary-card-2 {
     width: 200px;
     height: 270px;
     z-index: 1;
-    transform: rotate(-12deg) translate(100px, 120px);
 }
 
-/* Collage Hover effects */
+/* Staggered curved fan-out reveal states on activation */
+.hero-visuals.active .main-card {
+    opacity: 1;
+    transform: rotate(-3deg) translate(-20px, 0) scale(1);
+    transition-delay: 0.1s;
+}
+
+.hero-visuals.active .secondary-card-1 {
+    opacity: 1;
+    transform: rotate(6deg) translate(140px, -70px) scale(1);
+    transition-delay: 0.3s;
+}
+
+.hero-visuals.active .secondary-card-2 {
+    opacity: 1;
+    transform: rotate(-12deg) translate(100px, 120px) scale(1);
+    transition-delay: 0.5s;
+}
+
+/* Collage Hover effects - make hover transitions snappier and cancel delay */
+.hero-visuals:hover .visual-card {
+    transition-duration: 0.6s;
+    transition-delay: 0s !important;
+}
+
 .hero-visuals:hover .main-card {
     transform: rotate(-1deg) translate(-25px, -15px) scale(1.02);
     box-shadow: 0 40px 80px rgba(212, 175, 55, 0.15);
@@ -675,6 +696,120 @@ p {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 1.5rem;
+}
+
+/* Photography List Layout (Modern Editorial Look) */
+.photography-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    max-width: 1000px;
+    margin: 2rem auto 0;
+}
+
+.photo-list-item {
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+    padding: 1.75rem;
+    border-radius: 28px;
+    background-color: var(--bg-surface-glass);
+    border: 1px solid var(--border-light);
+    backdrop-filter: blur(12px);
+    transition: transform 0.6s var(--ease-luxury), border-color 0.6s ease, box-shadow 0.6s var(--ease-luxury);
+}
+
+.photo-list-item:hover {
+    transform: translateY(-4px);
+    border-color: rgba(212, 175, 55, 0.3);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4), 0 0 25px rgba(212, 175, 55, 0.05);
+}
+
+/* Medium size visual card override */
+.photo-list-card.gallery-item {
+    aspect-ratio: 4 / 3;
+    width: 280px;
+    height: auto;
+    border-radius: 20px;
+    flex-shrink: 0;
+}
+
+.photo-list-card.gallery-item:hover {
+    transform: none;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+}
+
+.photo-list-info {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+}
+
+.photo-list-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+}
+
+.photo-list-num {
+    font-family: var(--font-display);
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text-accent);
+    opacity: 0.8;
+}
+
+.photo-list-title {
+    font-family: var(--font-display);
+    font-size: 1.75rem;
+    font-weight: 600;
+    color: var(--text-main);
+    letter-spacing: -0.01em;
+}
+
+.photo-list-sep {
+    color: var(--text-muted);
+    opacity: 0.5;
+}
+
+.photo-list-link {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 1.1rem;
+    color: var(--text-accent);
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+.photo-list-link::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background-color: var(--text-accent);
+    transform: scaleX(0.8);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+}
+
+.photo-list-link:hover {
+    color: var(--text-accent-bright);
+}
+
+.photo-list-link:hover::after {
+    transform: scaleX(1);
+    background-color: var(--text-accent-bright);
+}
+
+.photo-list-desc {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+    max-width: 600px;
 }
 
 .gallery-item {
@@ -1492,13 +1627,23 @@ p {
     .secondary-card-1 {
         width: 180px;
         height: 250px;
-        transform: rotate(6deg) translate(110px, -60px);
     }
 
     .secondary-card-2 {
         width: 170px;
         height: 230px;
-        transform: rotate(-12deg) translate(80px, 90px);
+    }
+
+    .hero-visuals.active .main-card {
+        transform: rotate(-3deg) translate(-10px, 0) scale(1);
+    }
+
+    .hero-visuals.active .secondary-card-1 {
+        transform: rotate(6deg) translate(110px, -60px) scale(1);
+    }
+
+    .hero-visuals.active .secondary-card-2 {
+        transform: rotate(-12deg) translate(80px, 90px) scale(1);
     }
 
     .hero-visuals:hover .secondary-card-1 {
@@ -1596,6 +1741,26 @@ p {
 
     .gallery-grid {
         grid-template-columns: 1fr;
+    }
+
+    .photo-list-item {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 1.5rem;
+        padding: 1.25rem;
+    }
+    
+    .photo-list-card.gallery-item {
+        width: 100%;
+        aspect-ratio: 16 / 10;
+    }
+    
+    .photo-list-info {
+        gap: 0.5rem;
+    }
+    
+    .photo-list-title {
+        font-size: 1.35rem;
     }
 
     .video-grid {
